@@ -1,0 +1,16 @@
+type Query {
+    entry: Entry!
+}
+
+type Entry {
+    id: ID!
+    title: String!
+    body: String!
+    comments: [EntryComment!]
+}
+
+type EntryComment {
+   id: ID!
+   body: String!
+}
+
