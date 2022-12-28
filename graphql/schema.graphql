@@ -1,10 +1,5 @@
 type Query {
-    greatEntry: GreatEntryPayload
-}
-
-type GreateEntryPayload {
-    point: String!
-    entry: Entry!
+    entries: [Entry!]
 }
 
 type Entry {

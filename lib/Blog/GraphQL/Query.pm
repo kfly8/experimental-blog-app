@@ -8,7 +8,7 @@ usesub Blog::GraphQL::Resolver;
 
 sub root {
     return {
-        greatEntry => Blog::GraphQL::Resolver::GreateEntry->can('resolve') // die,
+        entries => Blog::GraphQL::Resolver::Entries->can('resolve') // die,
     }
 };
 
