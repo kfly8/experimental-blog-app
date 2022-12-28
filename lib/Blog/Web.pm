@@ -16,6 +16,8 @@ sub startup($self) {
 
     $r->get('/entry/:id')->to('Entry#show');
     $r->post('/entry')->to('Entry#post');
+
+    $r->post('/graphql')->to('GraphQL#endpoint');
 }
 
 1;
