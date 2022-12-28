@@ -1,5 +1,5 @@
 type Query {
-    entry: Entry!
+    entries: [Entry!]
 }
 
 type Entry {

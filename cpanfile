@@ -26,6 +26,7 @@ requires 'Iterator::Simple';
 requires 'String::CamelCase';
 requires 'Class::Load';
 requires 'Import::Into';
+requires 'Module::Find';
 
 on 'develop' => sub {
     requires 'Carmel';
