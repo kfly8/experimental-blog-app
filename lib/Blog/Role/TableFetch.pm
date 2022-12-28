@@ -2,6 +2,8 @@ package Blog::Role::TableFetch;
 use v5.36;
 use Moo::Role;
 
+$DBIx::Sunny::SKIP_CALLER_REGEX = qr!$DBIx::Sunny::SKIP_CALLER_REGEX|^Blog::Role::TableFetch\b!;
+
 requires qw(dbh query_builder);
 requires qw(table_name);
 
