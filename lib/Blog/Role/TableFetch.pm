@@ -60,4 +60,12 @@ sub select_all($self, $where, $opt = {}, $fields = ['*']) {
     }
 }
 
+sub count($self, $where, $opt = {}, $count_column = [\'COUNT(*)']) {
+    my ($sql, @binds) = $self->query_builder->select(
+        $self->table_name, [$count_column], $where, $opt
+    );
+
+    my $count = $self->dbh->select_one($sql, @binds);
+}
+
 1;

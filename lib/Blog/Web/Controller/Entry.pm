@@ -11,9 +11,10 @@ use constant EntryComment => {
 };
 
 use constant Entry => {
-    id      => JSON_TYPE_STRING,
-    title   => JSON_TYPE_STRING,
-    summary => JSON_TYPE_STRING,
+    id            => JSON_TYPE_STRING,
+    title         => JSON_TYPE_STRING,
+    summary       => JSON_TYPE_STRING,
+    comment_count => JSON_TYPE_INT,
 };
 
 use constant EntryDetail => {

@@ -28,6 +28,14 @@ has comment_entity => (
     }
 );
 
+# TODO: N+1対応
+has comment_count => (
+    is => 'lazy',
+    builder => sub ($self) {
+        my $count = $self->comment_entity->count({ entry_id => $self->id});
+    }
+);
+
 has comments => (
     is => 'lazy',
     builder => sub ($self) {
