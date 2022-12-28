@@ -2,23 +2,14 @@ package Blog::GraphQL::Query;
 use v5.36;
 use utf8;
 
-use Class::Load qw(is_class_loaded);
+use Module::Find qw(usesub);
 
-use Blog::GraphQL::Resolver::GreateEntry;
+usesub Blog::GraphQL::Resolver;
 
-sub resolver($resolver_class) {
-    unless (is_class_loaded($resolver_class)) {
-        die "need to use $resolver_class";
+sub root {
+    return {
+        greatEntry => Blog::GraphQL::Resolver::GreateEntry->can('resolve') // die,
     }
-    unless ($resolver_class->can('resolve')) {
-        die "need to implements resolve function in $resolver_class";
-    }
-
-    $resolver_class->can('resolve');
-}
-
-use constant root => {
-    greatEntry => resolver('Blog::GraphQL::Resolver::GreateEntry'),
 };
 
 
