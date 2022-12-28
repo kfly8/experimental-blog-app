@@ -11,23 +11,19 @@ use GraphQL::Schema;
 use GraphQL::Language::Parser ();
 use GraphQL::Execution ();
 
+use Blog::GraphQL::Query;
+
 sub endpoint($c) {
     my $file = Mojo::Home->new('graphql/schema.graphql');
     my $schema = GraphQL::Schema->from_doc($file->slurp);
 
     my $query = $c->req->json->{query};
 
-    # TODO: たたかれるqueryを事前にastにしてホワイトリストしたい。安全とパフォーマンスのため。
+    # TODO: たたかれるqueryを事前にastにしてホワイトリストにいれておきたい。安全とパフォーマンスのため。
     my $parsed_query = GraphQL::Language::Parser::parse($query);
 
-    my $root_value = {
-        entry => sub {
-            {
-                title => 'waiwai',
-                body => 'yoyoyo'
-            }
-        },
-    };
+    # TODO: queryだけでなく mutationも加える
+    my $root_value = Blog::GraphQL::Query->root;
 
     my $context_value = { current_blog => 'waiwai.blog' };
     my $variable_values = $c->req->json->{variables};

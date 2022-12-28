@@ -1,4 +1,9 @@
 type Query {
+    greatEntry: GreateEntryPayload
+}
+
+type GreateEntryPayload {
+    point: String!
     entry: Entry!
 }
 
