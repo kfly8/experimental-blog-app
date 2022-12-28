@@ -14,6 +14,12 @@ use constant Entry => {
     id      => JSON_TYPE_STRING,
     title   => JSON_TYPE_STRING,
     summary => JSON_TYPE_STRING,
+};
+
+use constant EntryDetail => {
+    id       => JSON_TYPE_STRING,
+    title    => JSON_TYPE_STRING,
+    body     => JSON_TYPE_STRING,
     comments => json_type_arrayof(EntryComment),
 };
 
@@ -30,7 +36,20 @@ sub show($c) {
 
     $c->render(
         status => HTTP_OK,
-        data => $c->json_encode({ entry => $entry }, { entry => Entry })
+        data => $c->json_encode({ entry => $entry }, { entry => EntryDetail })
+    );
+}
+
+sub list($c) {
+    my $entity = Blog::Entity::Entry->new;
+    my $entries = $entity->select_all({});
+
+    $c->render(
+        status => HTTP_OK,
+        data => $c->json_encode(
+            { entries => $entries },
+            { entries => json_type_arrayof(Entry) }
+        )
     );
 }
 
