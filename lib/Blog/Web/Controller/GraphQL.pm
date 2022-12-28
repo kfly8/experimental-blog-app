@@ -12,7 +12,7 @@ use GraphQL::Language::Parser ();
 use GraphQL::Execution ();
 
 sub endpoint($c) {
-    my $file = Mojo::Home->new('schema.graphql');
+    my $file = Mojo::Home->new('graphql/schema.graphql');
     my $schema = GraphQL::Schema->from_doc($file->slurp);
 
     my $query = $c->req->json->{query};
@@ -49,6 +49,14 @@ sub endpoint($c) {
     $c->render(
         status => HTTP_OK,
         json => $result,
+    );
+}
+
+sub graphiql($c) {
+    my $file = Mojo::Home->new('graphql/graphiql.html');
+    $c->render(
+        format => 'html',
+        data => $file->slurp,
     );
 }
 
