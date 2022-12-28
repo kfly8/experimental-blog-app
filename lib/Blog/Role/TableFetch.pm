@@ -5,6 +5,8 @@ use Moo::Role;
 requires qw(dbh query_builder);
 requires qw(table_name);
 
+use Iterator::Simple qw(imap);
+
 =head2
 
 fetchの結果を圧縮するかいなか
@@ -40,6 +42,22 @@ sub fetch($self, $where, $opt = {}, $fields = ['*']) {
 sub fetch_by_id($self, $id, $opt = {}, $fields = ['*']) {
     my $where = { id => $id };
     return $self->fetch($where, $opt, $fields);
+}
+
+sub select_all($self, $where, $opt = {}, $fields = ['*']) {
+    my ($sql, @binds) = $self->query_builder->select(
+        $self->table_name, $fields, $where, $opt
+    );
+
+    my $rows = $self->dbh->select_all($sql, @binds);
+
+    if ($rows->@* && !$self->suppress_result) {
+        my $klass = ref $self;
+        return imap { $klass->new($_) } $rows
+    }
+    else {
+        return $rows;
+    }
 }
 
 1;

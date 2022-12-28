@@ -17,7 +17,6 @@ create_table 'entry' => columns {
 create_table 'entry_comment' => columns {
     string 'id', primary_key;
     string 'entry_id';
-    text 'title';
     text 'body';
 
     belongs_to 'entry';

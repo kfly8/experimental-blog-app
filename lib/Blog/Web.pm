@@ -14,8 +14,9 @@ sub startup($self) {
 
     $r->get('/')->to('Root#welcome');
 
-    $r->get('/entry/:id')->to('Entry#show');
+    $r->get('/entry/:entry_id')->to('Entry#show');
     $r->post('/entry')->to('Entry#post');
+    $r->post('/entry/:entry_id/comment')->to('Entry#post_comment');
 
     $r->post('/graphql')->to('GraphQL#endpoint');
 

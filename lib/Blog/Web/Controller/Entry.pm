@@ -5,18 +5,25 @@ use utf8;
 use Mojo::Base 'Mojolicious::Controller';
 use Blog::Web::Sugar;
 
+use constant EntryComment => {
+    id => JSON_TYPE_STRING,
+    body => JSON_TYPE_STRING,
+};
+
 use constant Entry => {
     id      => JSON_TYPE_STRING,
     title   => JSON_TYPE_STRING,
     summary => JSON_TYPE_STRING,
+    comments => json_type_arrayof(EntryComment),
 };
 
 use Blog::Entity::Entry;
 use Blog::Command::PostEntry;
+use Blog::Command::PostEntryComment;
 
 sub show($c) {
     my $entity = Blog::Entity::Entry->new;
-    my $entry = $entity->fetch_by_id($c->param('id'));
+    my $entry = $entity->fetch_by_id($c->param('entry_id'));
     unless ($entry) {
         return $c->reply->not_found
     }
@@ -31,6 +38,21 @@ sub post($c) {
     try {
         Blog::Command::PostEntry->run(
             title => $c->req->json->{title},
+            body => $c->req->json->{body},
+        );
+    }
+    catch ($e) {
+        $c->log->error($e);
+        return $c->reply->exception('some error');
+    }
+
+    $c->rendered(HTTP_CREATED);
+}
+
+sub post_comment($c) {
+    try {
+        Blog::Command::PostEntryComment->run(
+            entry_id => $c->param('entry_id'),
             body => $c->req->json->{body},
         );
     }
