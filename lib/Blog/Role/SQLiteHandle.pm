@@ -10,7 +10,7 @@ has dbh => (
     default => sub($self) {
         my $user     = $ENV{BLOG_SQLITE_USER}       || '';
         my $password = $ENV{BLOG_SQLITE_PASSWORD}   || '';
-        my $dbname   = $ENV{BLOG_SQLITE_NAME}       || 'blog.db';
+        my $dbname   = $ENV{BLOG_SQLITE_NAME}       || 'db/blog.db';
 
         my $dsn = "dbi:SQLite:database=$dbname";
         my $dbh = DBIx::Sunny->connect($dsn, $user, $password, {});
