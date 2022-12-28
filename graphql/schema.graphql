@@ -1,5 +1,5 @@
 type Query {
-    greatEntry: GreateEntryPayload
+    greatEntry: GreatEntryPayload
 }
 
 type GreateEntryPayload {

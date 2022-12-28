@@ -1,4 +1,4 @@
-package Blog::GraphQL::Type::Payload::GreateEntry;
+package Blog::GraphQL::Type::Payload::GreatEntry;
 use v5.36;
 use utf8;
 use Moo;
@@ -9,6 +9,8 @@ use Types::Common -types;
 use Blog::GraphQL::Type::Entry;
 
 sub point {
+    my ($self, $args, $context, $info) = @_;
+
     'あああああああああ'
 }
 
