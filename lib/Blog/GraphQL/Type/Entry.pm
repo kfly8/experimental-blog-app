@@ -2,26 +2,29 @@ package Blog::GraphQL::Type::Entry;
 use v5.36;
 use utf8;
 use Moo;
-extends qw(Blog::GraphQL::Type);
+extends qw(Blog::GraphQL::TypeObject);
 
 use Blog::GraphQL::Type::EntryComment;
 
-sub id {
-    'dummy EntryComment id'
+sub id($self, @rest) {
+    $self->object->id;
 }
 
-sub title {
-    'waiwai'
+sub title($self, @rest) {
+    $self->object->title;
 }
 
-sub body {
-    'yoyoyoy'
+sub body($self, @rest) {
+    $self->object->body;
 }
 
-sub comments {
-    [
-        Blog::GraphQL::Type::EntryComment->new,
-    ]
+sub comments($self, @rest) {
+    my $comments = $self->object->comments;
+    my @data;
+    while (my $comment = $comments->next) {
+        push @data => Blog::GraphQL::Type::EntryComment->new(object => $comment)
+    }
+    return \@data;
 }
 
 1;

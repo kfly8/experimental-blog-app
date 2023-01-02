@@ -36,12 +36,9 @@ has comment_count => (
     }
 );
 
-has comments => (
-    is => 'lazy',
-    builder => sub ($self) {
-        my $comments = $self->comment_entity->select_all({ entry_id => $self->id});
-    }
-);
+sub comments($self) {
+    my $comments = $self->comment_entity->select_all({ entry_id => $self->id });
+}
 
 sub summary($self) {
     substr($self->body, 0, 10);

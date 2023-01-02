@@ -2,14 +2,14 @@ package Blog::GraphQL::Type::EntryComment;
 use v5.36;
 use utf8;
 use Moo;
-extends qw(Blog::GraphQL::Type);
+extends qw(Blog::GraphQL::TypeObject);
 
-sub id {
-    'dummy EntryComment id'
+sub id($self, @rest) {
+    $self->object->id;
 }
 
-sub body {
-    'comment'
+sub body($self, @rest) {
+    $self->object->body;
 }
 
 1;

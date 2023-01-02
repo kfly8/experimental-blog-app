@@ -53,12 +53,12 @@ sub select_all($self, $where, $opt = {}, $fields = ['*']) {
 
     my $rows = $self->dbh->select_all($sql, @binds);
 
-    if ($rows->@* && !$self->suppress_result) {
-        my $klass = ref $self;
-        return imap { $klass->new($_) } $rows
+    if ($self->suppress_result) {
+        return $rows;
     }
     else {
-        return $rows;
+        my $klass = ref $self;
+        return imap { $klass->new($_) } $rows
     }
 }
 

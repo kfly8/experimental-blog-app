@@ -20,13 +20,18 @@ requires 'SQL::Maker';
 requires 'DBIx::Schema::DSL';
 
 # Utility
+requires 'constant';
 requires 'experimental';
 requires 'namespace::autoclean';
+requires 'Carp';
 requires 'Iterator::Simple';
 requires 'String::CamelCase';
 requires 'Class::Load';
 requires 'Import::Into';
 requires 'Module::Find';
+
+# Mojoに依存しない実装が良いと思うけど、試しにいれてみる
+requires 'DataLoader';
 
 on 'develop' => sub {
     requires 'Carmel';
