@@ -1,13 +1,13 @@
-package Blog::Role::TableSave;
+package Blog::UnitRole::TableSave;
 use v5.36;
 use Moo::Role;
 
 requires qw(dbh query_builder);
 requires qw(table_name table_field_names);
 
-sub insert($self, $opt = {}) {
+sub insert($self, $object, $opt = {}) {
     my $values = {
-        map { $_ => $self->$_ } $self->table_field_names->@*
+        map { $_ => $object->$_ } $self->table_field_names->@*
     };
 
     my ($sql, @binds) = $self->query_builder->insert(

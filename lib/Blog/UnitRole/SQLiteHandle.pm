@@ -1,4 +1,4 @@
-package Blog::Role::SQLiteHandle;
+package Blog::UnitRole::SQLiteHandle;
 use v5.36;
 use Moo::Role;
 

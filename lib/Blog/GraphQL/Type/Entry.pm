@@ -21,8 +21,10 @@ sub body($self, @rest) {
 sub comments($self, @rest) {
     my $comments = $self->object->comments;
     my @data;
-    while (my $comment = $comments->next) {
-        push @data => Blog::GraphQL::Type::EntryComment->new(object => $comment)
+    if ($comments) {
+        while (my $comment = $comments->next) {
+            push @data => Blog::GraphQL::Type::EntryComment->new(object => $comment)
+        }
     }
     return \@data;
 }

@@ -24,13 +24,13 @@ use constant EntryDetail => {
     comments => json_type_arrayof(EntryComment),
 };
 
-use Blog::Entity::Entry;
+use Blog::Unit::Entry::EntryFetcher;
 use Blog::Command::PostEntry;
 use Blog::Command::PostEntryComment;
 
 sub show($c) {
-    my $entity = Blog::Entity::Entry->new;
-    my $entry = $entity->fetch_by_id($c->param('entry_id'));
+    my $entry_fetcher = Blog::Unit::Entry::EntryFetcher->new;
+    my $entry = $entry_fetcher->fetch_by_id($c->param('entry_id'));
     unless ($entry) {
         return $c->reply->not_found
     }
@@ -42,8 +42,8 @@ sub show($c) {
 }
 
 sub list($c) {
-    my $entity = Blog::Entity::Entry->new;
-    my $entries = $entity->select_all({});
+    my $entry_fetcher = Blog::Unit::Entry::EntryFetcher->new;
+    my $entries = $entry_fetcher->select_all({});
 
     $c->render(
         status => HTTP_OK,

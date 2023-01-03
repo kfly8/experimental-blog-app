@@ -1,8 +1,8 @@
-package Blog::Command;
+package Blog::CommandRole;
 use v5.36;
-use Moo;
+use Moo::Role;
 
-sub main { die 'implements required' }
+requires 'main';
 
 sub run($class, %args) {
     my $self = $class->new(%args);

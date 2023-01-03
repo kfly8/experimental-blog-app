@@ -1,4 +1,4 @@
-package Blog::Role::TableInfo;
+package Blog::UnitRole::TableInfo;
 use v5.36;
 use Moo::Role;
 use Blog::Schema;

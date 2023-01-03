@@ -1,11 +1,11 @@
-package Blog::Role::TableFetch;
+package Blog::UnitRole::TableFetch;
 use v5.36;
 use Moo::Role;
 
-$DBIx::Sunny::SKIP_CALLER_REGEX = qr!$DBIx::Sunny::SKIP_CALLER_REGEX|^Blog::Role::TableFetch\b!;
+$DBIx::Sunny::SKIP_CALLER_REGEX = qr!$DBIx::Sunny::SKIP_CALLER_REGEX|^Blog::UnitRole::TableFetch\b!;
 
 requires qw(dbh query_builder);
-requires qw(table_name);
+requires qw(table_name entity_class);
 
 use Iterator::Simple qw(imap);
 
@@ -33,8 +33,7 @@ sub fetch($self, $where, $opt = {}, $fields = ['*']) {
     my $row = $self->dbh->select_row($sql, @binds);
 
     if ($row && !$self->suppress_result) {
-        my $klass = ref $self;
-        return $klass->new($row);
+        return $self->entity_class->new($row);
     }
     else {
         return $row;
@@ -57,8 +56,7 @@ sub select_all($self, $where, $opt = {}, $fields = ['*']) {
         return $rows;
     }
     else {
-        my $klass = ref $self;
-        return imap { $klass->new($_) } $rows
+        return imap { $self->entity_class->new($_) } $rows
     }
 }
 
