@@ -52,6 +52,7 @@ sub endpoint($c) {
     );
 
     if ($result isa Mojo::Promise) {
+        my $tx = $c->render_later->tx;
         $result->then(sub($data) {
             $c->render(
                 status => HTTP_OK,
