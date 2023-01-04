@@ -8,6 +8,7 @@ use Blog::Web::Sugar;
 use constant EntryComment => {
     id => JSON_TYPE_STRING,
     body => JSON_TYPE_STRING,
+    entry_id => undef, #XXX ignoreしたい
 };
 
 use constant Entry => {
@@ -29,8 +30,8 @@ use Blog::Command::PostEntry;
 use Blog::Command::PostEntryComment;
 
 sub show($c) {
-    my $entry_fetcher = Blog::Unit::Entry::EntryFetcher->new;
-    my $entry = $entry_fetcher->fetch_by_id($c->param('entry_id'));
+    my $fetcher = Blog::Unit::Entry::EntryFetcher->entity;
+    my $entry = $fetcher->fetch_by_id($c->param('entry_id'));
     unless ($entry) {
         return $c->reply->not_found
     }
@@ -42,8 +43,8 @@ sub show($c) {
 }
 
 sub list($c) {
-    my $entry_fetcher = Blog::Unit::Entry::EntryFetcher->new;
-    my $entries = $entry_fetcher->select_all({});
+    my $fetcher = Blog::Unit::Entry::EntryFetcher->entity;
+    my $entries = $fetcher->entity->select_all({});
 
     $c->render(
         status => HTTP_OK,
