@@ -1,16 +1,31 @@
+"""
+クエリ
+うおおおおおおお
+"""
 type Query {
+
+    """エントリー一覧"""
     entries: [Entry!]
 }
 
 type Entry {
+    """ID"""
     id: ID!
+
+    """Entryのタイトル"""
     title: String!
+
+    """Entryの本文"""
     body: String!
+
+    """Entryへのコメント"""
     comments: [EntryComment!]
 }
 
 type EntryComment {
    id: ID!
+
+   """コメント本文"""
    body: String!
 }
 

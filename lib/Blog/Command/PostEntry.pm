@@ -5,12 +5,12 @@ use utf8;
 
 use Moo;
 use Types::Common -types;
+
 use Blog::Util qw(generate_uuid);
-use namespace::autoclean;
+use Blog::Unit::Entry::EntryEntity;
+use Blog::Unit::Entry::EntrySaver;
 
-use Blog::Entity::Entry;
-
-extends 'Blog::Command';
+with 'Blog::CommandRole';
 
 has id => (
     is => 'ro',
@@ -30,13 +30,15 @@ has body => (
 );
 
 sub main($self) {
-    my $entry = Blog::Entity::Entry->new(
+    my $entry = Blog::Unit::Entry::EntryEntity->new(
         id    => $self->id,
         title => $self->title,
         body  => $self->body,
     );
 
-    $entry->insert;
+    my $saver = Blog::Unit::Entry::EntrySaver->new;
+    $saver->insert($entry);
+
     $entry;
 }
 

@@ -2,26 +2,25 @@ package Blog::GraphQL::Type::Entry;
 use v5.36;
 use utf8;
 use Moo;
-extends qw(Blog::GraphQL::Type);
+extends qw(Blog::GraphQL::TypeObject);
 
-use Blog::GraphQL::Type::EntryComment;
+use Blog::Unit::Entry::EntryCommentFetcher;
 
-sub id {
-    'dummy EntryComment id'
+sub id($self, @) {
+    $self->object->id;
 }
 
-sub title {
-    'waiwai'
+sub title($self, @) {
+    $self->object->title;
 }
 
-sub body {
-    'yoyoyoy'
+sub body($self, @) {
+    $self->object->body;
 }
 
-sub comments {
-    [
-        Blog::GraphQL::Type::EntryComment->new,
-    ]
+sub comments($self, $args, $context, @) {
+    my $loader = $self->data_loader($context, Blog::Unit::Entry::EntryCommentFetcher->can('batch_comments'));
+    $loader->load($self->object->id);
 }
 
 1;
