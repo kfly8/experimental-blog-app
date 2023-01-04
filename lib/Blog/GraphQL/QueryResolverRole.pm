@@ -45,7 +45,7 @@ sub convert_list($self, $list) {
     my $iter = iter($list);
     while (my $object = $iter->next) {
         push @data => $self->object_class->new(
-            object => $object,
+            object => $object
         );
     }
     return \@data;
