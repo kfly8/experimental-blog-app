@@ -6,6 +6,7 @@ use Mojo::Base 'Mojolicious::Controller';
 use Blog::Web::Sugar;
 
 use Mojo::Home;
+use Mojo::Promise;
 
 use Blog::GraphQL::Schema;
 use GraphQL::Language::Parser ();
@@ -28,7 +29,16 @@ sub endpoint($c) {
     my $variable_values = $c->req->json->{variables};
     my $operation_name = $c->req->json->{operationName};
     my $field_resolver = undef;
-    my $promise_code = undef;
+    my $promise_code = {
+        resolve => sub { Mojo::Promise->resolve(@_) },
+        reject => sub { Mojo::Promise->reject(@_) },
+        all => sub {
+            my (@values) = @_;
+            Mojo::Promise->all(map {
+                $_ isa Mojo::Promise ? $_ : Mojo::Promise->resolve($_);
+            } @values)
+        },
+    };
 
     my $result = GraphQL::Execution::execute(
       $schema,
@@ -41,10 +51,20 @@ sub endpoint($c) {
       $promise_code,
     );
 
-    $c->render(
-        status => HTTP_OK,
-        json => $result,
-    );
+    if ($result isa Mojo::Promise) {
+        $result->then(sub($data) {
+            $c->render(
+                status => HTTP_OK,
+                json => $data,
+            );
+        });
+    }
+    else {
+        $c->render(
+            status => HTTP_OK,
+            json => $result,
+        );
+    }
 }
 
 sub graphiql($c) {
