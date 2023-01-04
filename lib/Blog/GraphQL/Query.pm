@@ -16,7 +16,7 @@ sub resolver($class) {
         my $resolver_class = $class->resolver_class($key);
         my $schema_type = $class->schema_type($key);
 
-        $result->{$key} = $resolver_class->new(type => $schema_type)->resolver;
+        $result->{$key} = $resolver_class->new(graphql_type => $schema_type)->resolver;
     }
 
     return $result;

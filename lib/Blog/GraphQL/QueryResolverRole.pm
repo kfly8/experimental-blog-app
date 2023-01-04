@@ -10,7 +10,7 @@ use namespace::autoclean;
 
 requires 'main';
 
-has type => (
+has graphql_type => (
     is => 'ro',
     isa => InstanceOf['GraphQL::Type']
 );
@@ -18,7 +18,7 @@ has type => (
 has object_class => (
     is => 'lazy',
     default => sub ($self) {
-        my $object_class = 'Blog::GraphQL::Type::' . $self->type->name;
+        my $object_class = 'Blog::GraphQL::Type::' . $self->graphql_type->name;
         unless (try_load_class($object_class)) {
             die "Could not load object class: $object_class"
         }
@@ -29,8 +29,8 @@ has object_class => (
 sub resolver($self) {
 
     # TODO pager list, single typeなどの結果の場合のconverter
-    my $convert_method = $self->type isa GraphQL::Type::List ? 'convert_list'
-                       : die 'unknown graphql schema type ' . $self->type;
+    my $convert_method = $self->graphql_type isa GraphQL::Type::List ? 'convert_list'
+                       : die 'unknown graphql schema type ' . $self->graphql_type;
 
     return sub {
         my ($args, $context, $info) = @_;
