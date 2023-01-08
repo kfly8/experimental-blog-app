@@ -14,6 +14,7 @@
 # Whitespace control
 --paren-tightness=2                     # -pt=2
 --nospace-for-semicolon                 # -nsfs
+--no-add-whitespace                     # -naws
 
 # Comment controls
 

@@ -13,3 +13,11 @@ repos:
   rev: v1.146-1
   hooks:
     - id: perlcritic
+- repo: local
+  hooks:
+    - id: perlimports
+      name: perlimports
+      language: perl
+      entry: perlimports -i
+      args: ["lib"]
+      types: [perl]
