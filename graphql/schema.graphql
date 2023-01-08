@@ -28,4 +28,3 @@ type EntryComment {
    """コメント本文"""
    body: String!
 }
-

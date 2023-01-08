@@ -13,23 +13,23 @@ use Blog::Unit::Entry::EntryCommentSaver;
 with 'Blog::CommandRole';
 
 has id => (
-    is => 'ro',
+    is      => 'ro',
     default => sub { generate_uuid }
 );
 
 has entry_id => (
-    is => 'rw',
-    isa => Str,
+    is       => 'rw',
+    isa      => Str,
     required => 1,
 );
 
 has body => (
-    is => 'rw',
-    isa => Str,
+    is       => 'rw',
+    isa      => Str,
     required => 1,
 );
 
-sub main($self) {
+sub main ($self) {
     my $entry_comment = Blog::Unit::Entry::EntryCommentEntity->new(
         id       => $self->id,
         entry_id => $self->entry_id,

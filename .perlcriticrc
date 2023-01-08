@@ -1,0 +1,28 @@
+severity = 3
+program-extensions = .pl .t
+verbose = %f: %m at line %l, column %c.  %e [%p]\n
+
+[-ValuesAndExpressions::ProhibitVersionStrings]
+
+[-Subroutines::ProhibitSubroutinePrototypes]
+
+[-BuiltinFunctions::ProhibitUniversalIsa]
+
+[-Subroutines::RequireFinalReturn]
+
+[-Subroutines::ProhibitExplicitReturnUndef]
+
+[-ValuesAndExpressions::ProhibitConstantPragma]
+
+[-ValuesAndExpressions::ProhibitImplicitNewlines]
+
+[-RegularExpressions::RequireExtendedFormatting]
+
+[TestingAndDebugging::RequireUseStrict]
+equivalent_modules = Test2::V0
+
+[TestingAndDebugging::RequireUseWarnings]
+equivalent_modules = Test2::V0
+
+[Subroutines::ProhibitUnusedPrivateSubroutines]
+allow_name_regex = \A_build_.+

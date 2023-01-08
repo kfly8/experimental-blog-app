@@ -9,8 +9,8 @@ with qw(
     Blog::UnitRole::TableFetch
 );
 
-sub table_name { 'entry' }
-sub entity_class { 'Blog::Unit::Entry::EntryEntity' }
+sub table_name    { 'entry' }
+sub entity_class  { 'Blog::Unit::Entry::EntryEntity' }
 sub graphql_class { 'Blog::GraphQL::Type::Entry' }
 
 1;
