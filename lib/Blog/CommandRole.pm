@@ -4,7 +4,7 @@ use Moo::Role;
 
 requires 'main';
 
-sub run($class, %args) {
+sub run ($class, %args) {
     my $self = $class->new(%args);
     return $self->main;
 }

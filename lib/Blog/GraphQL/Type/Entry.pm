@@ -6,19 +6,19 @@ extends qw(Blog::GraphQL::TypeObject);
 
 use Blog::Unit::Entry::EntryCommentFetcher;
 
-sub id($self, @) {
+sub id ($self, @) {
     $self->object->id;
 }
 
-sub title($self, @) {
+sub title ($self, @) {
     $self->object->title;
 }
 
-sub body($self, @) {
+sub body ($self, @) {
     $self->object->body;
 }
 
-sub comments($self, $args, $context, @) {
+sub comments ($self, $args, $context, @) {
     my $loader = $self->data_loader($context, Blog::Unit::Entry::EntryCommentFetcher->can('batch_comments'));
     $loader->load($self->object->id);
 }

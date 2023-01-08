@@ -4,7 +4,7 @@ use utf8;
 
 use Mojo::Base 'Mojolicious';
 
-sub startup($self) {
+sub startup ($self) {
     $self->app->exception_format('json');
     $self->app->renderer->default_format('json');
     $self->app->plugin('Blog::Web::Plugin::JSON');

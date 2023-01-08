@@ -4,11 +4,11 @@ use utf8;
 use Moo;
 extends qw(Blog::GraphQL::TypeObject);
 
-sub id($self, @) {
+sub id ($self, @) {
     $self->object->id;
 }
 
-sub body($self, @) {
+sub body ($self, @) {
     $self->object->body;
 }
 

@@ -4,8 +4,8 @@ use utf8;
 
 use Moo;
 
-has id => (is => 'ro');
+has id       => (is => 'ro');
 has entry_id => (is => 'ro');
-has body => (is => 'ro');
+has body     => (is => 'ro');
 
 1;

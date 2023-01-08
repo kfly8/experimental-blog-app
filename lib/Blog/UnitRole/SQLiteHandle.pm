@@ -6,11 +6,11 @@ use DBIx::Sunny;
 use SQL::Maker;
 
 has dbh => (
-    is => 'ro',
-    default => sub($self) {
-        my $user     = $ENV{BLOG_SQLITE_USER}       || '';
-        my $password = $ENV{BLOG_SQLITE_PASSWORD}   || '';
-        my $dbname   = $ENV{BLOG_SQLITE_NAME}       || 'db/blog.db';
+    is      => 'ro',
+    default => sub ($self) {
+        my $user     = $ENV{BLOG_SQLITE_USER}     || '';
+        my $password = $ENV{BLOG_SQLITE_PASSWORD} || '';
+        my $dbname   = $ENV{BLOG_SQLITE_NAME}     || 'db/blog.db';
 
         my $dsn = "dbi:SQLite:database=$dbname";
         my $dbh = DBIx::Sunny->connect($dsn, $user, $password, {});
@@ -19,7 +19,7 @@ has dbh => (
 );
 
 has query_builder => (
-    is => 'ro',
+    is      => 'ro',
     default => sub ($self) {
         SQL::Maker->new(driver => 'SQLite');
     }
