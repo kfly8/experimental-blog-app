@@ -1,7 +1,7 @@
 package Blog::UnitRole::TableInfo;
 use v5.36;
 use Moo::Role;
-use Blog::Schema;
+use Blog::Schema ();
 
 requires 'table_name';
 

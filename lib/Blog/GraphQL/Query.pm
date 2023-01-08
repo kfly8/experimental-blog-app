@@ -2,11 +2,11 @@ package Blog::GraphQL::Query;
 use v5.36;
 use utf8;
 
-use String::CamelCase qw(camelize);
-use Class::Load       qw(try_load_class);
-use Carp              qw(croak);
+use String::CamelCase qw( camelize );
+use Class::Load qw( try_load_class );
+use Carp qw( croak );
 
-use Blog::GraphQL::Schema;
+use Blog::GraphQL::Schema ();
 
 sub resolver ($class) {
     my $result = {};

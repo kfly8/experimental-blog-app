@@ -3,12 +3,12 @@ use v5.36;
 use utf8;
 use Moo;
 
-use DataLoader;
-use Mojo::Promise;
-use Carp qw(croak);
+use DataLoader ();
+use Mojo::Promise ();
+use Carp qw( croak );
 use namespace::autoclean;
 
-use Blog::GraphQL::Schema;
+use Blog::GraphQL::Schema ();
 
 sub BUILD {
     my ($self, $args) = @_;

@@ -2,8 +2,8 @@ package Blog::UnitRole::SQLiteHandle;
 use v5.36;
 use Moo::Role;
 
-use DBIx::Sunny;
-use SQL::Maker;
+use DBIx::Sunny ();
+use SQL::Maker ();
 
 has dbh => (
     is      => 'ro',

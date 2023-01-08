@@ -4,10 +4,9 @@ use Moo::Role;
 
 $DBIx::Sunny::SKIP_CALLER_REGEX = qr!$DBIx::Sunny::SKIP_CALLER_REGEX|^Blog::UnitRole::TableFetch\b!;
 
-use Carp             qw(croak);
-use Class::Load      qw(try_load_class);
-use Iterator::Simple qw(imap iter);
-use Scalar::Util     qw(blessed);
+use Carp qw( croak );
+use Class::Load qw( try_load_class );
+use Iterator::Simple qw( imap iter );
 use namespace::autoclean;
 
 requires qw(dbh query_builder);

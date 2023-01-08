@@ -4,7 +4,7 @@ use utf8;
 use Moo;
 extends qw(Blog::GraphQL::TypeObject);
 
-use Blog::Unit::Entry::EntryCommentFetcher;
+use Blog::Unit::Entry::EntryCommentFetcher ();
 
 sub id ($self, @) {
     $self->object->id;

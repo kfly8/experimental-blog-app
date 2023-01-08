@@ -4,11 +4,11 @@ use v5.36;
 use utf8;
 
 use Moo;
-use Types::Common -types;
+use Types::Common qw( Str );
 
-use Blog::Util qw(generate_uuid);
-use Blog::Unit::Entry::EntryCommentEntity;
-use Blog::Unit::Entry::EntryCommentSaver;
+use Blog::Util qw( generate_uuid );
+use Blog::Unit::Entry::EntryCommentEntity ();
+use Blog::Unit::Entry::EntryCommentSaver ();
 
 with 'Blog::CommandRole';
 

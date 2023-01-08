@@ -5,14 +5,14 @@ use utf8;
 use Mojo::Base 'Mojolicious::Controller';
 use Blog::Web::Sugar;
 
-use Mojo::Home;
-use Mojo::Promise;
+use Mojo::Home ();
+use Mojo::Promise ();
 
-use Blog::GraphQL::Schema;
+use Blog::GraphQL::Schema ();
 use GraphQL::Language::Parser ();
 use GraphQL::Execution        ();
 
-use Blog::GraphQL::Query;
+use Blog::GraphQL::Query ();
 
 sub endpoint ($c) {
     my $schema = Blog::GraphQL::Schema->schema;
