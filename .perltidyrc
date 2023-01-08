@@ -1,0 +1,29 @@
+
+# I/O control
+--character-encoding="utf8"             # -enc="utf8"
+--quiet                                 # -q
+
+# Basic formatting options
+--indent-columns=4                      # -i=4  [=default]
+--maximum-line-length=0                 # -l=0
+
+# Code indentation control
+--continuation-indentation=4            # -ci=4
+--noindent-closing-brace                # -nicb
+
+# Whitespace control
+--paren-tightness=2                     # -pt=2
+--nospace-for-semicolon                 # -nsfs
+
+# Comment controls
+
+# Linebreak controls
+--noopening-sub-brace-on-new-line       # -nsbl
+
+# Controlling list formatting
+--break-at-old-comma-breakpoints        # -boc
+--comma-arrow-breakpoints=1             # -cab=1
+
+# Blank line control
+--noblanks-before-comments              # -nbbc
+--long-block-line-count=1               # -lbl=1
