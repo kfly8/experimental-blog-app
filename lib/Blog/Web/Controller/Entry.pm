@@ -25,9 +25,9 @@ use constant EntryDetail => {
     comments => json_type_arrayof(EntryComment),
 };
 
-use Blog::Unit::Entry::EntryFetcher;
-use Blog::Command::PostEntry;
-use Blog::Command::PostEntryComment;
+use Blog::Unit::Entry::EntryFetcher ();
+use Blog::Command::PostEntry ();
+use Blog::Command::PostEntryComment ();
 
 sub show ($c) {
     my $fetcher = Blog::Unit::Entry::EntryFetcher->entity;

@@ -2,6 +2,6 @@
 use v5.36;
 use lib 'lib';
 
-use Blog::Schema;
+use Blog::Schema ();
 
 print Blog::Schema->output;

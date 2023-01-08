@@ -4,7 +4,7 @@ use utf8;
 use Moo;
 with 'Blog::GraphQL::QueryResolverRole';
 
-use Blog::Unit::Entry::EntryFetcher;
+use Blog::Unit::Entry::EntryFetcher ();
 
 sub main ($self, $args, $context, $info) {
     my $fetcher = Blog::Unit::Entry::EntryFetcher->entity;

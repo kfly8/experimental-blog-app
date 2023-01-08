@@ -4,7 +4,7 @@ use utf8;
 
 use Mojo::Base 'Mojolicious::Plugin';
 
-use Cpanel::JSON::XS;
+use Cpanel::JSON::XS ();
 use Scalar::Util        ();
 use JSON::UnblessObject ();
 use Encode              ();

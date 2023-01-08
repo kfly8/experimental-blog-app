@@ -2,7 +2,7 @@ package Blog::Util;
 use v5.36;
 use Exporter 'import';
 
-use Data::UUID;
+use Data::UUID ();
 
 our @EXPORT_OK = qw(generate_uuid);
 

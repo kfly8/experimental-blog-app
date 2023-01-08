@@ -3,7 +3,7 @@ use v5.36;
 use utf8;
 
 use Moo;
-use Class::Load qw(load_class);
+use Class::Load qw( load_class );
 use namespace::autoclean;
 
 has id    => (is => 'ro');

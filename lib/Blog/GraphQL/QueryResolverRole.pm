@@ -3,10 +3,10 @@ use v5.36;
 use utf8;
 use Moo::Role;
 
-use Iterator::Simple qw(iter);
-use Class::Load      qw(try_load_class);
-use Carp             qw(croak);
-use Types::Common -types;
+use Iterator::Simple qw( iter );
+use Class::Load qw( try_load_class );
+use Carp qw( croak );
+use Types::Common qw( InstanceOf );
 use namespace::autoclean;
 
 requires 'main';
