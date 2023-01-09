@@ -11,16 +11,9 @@ repos:
     - id: check-added-large-files
     - id: no-commit-to-branch
       args: ['--branch', 'main']
-- repo: https://github.com/henryykt/pre-commit-perl
-  rev: v0.0.4
+- repo: https://github.com/kfly8/pre-commit-perl
+  rev: c6d072eb539d4fc76d64a800d7589b4149faa004
   hooks:
     - id: perltidy
     - id: perlcritic
-- repo: local
-  hooks:
     - id: perlimports
-      name: perlimports
-      language: perl
-      entry: perlimports -i
-      args: ["lib"]
-      types: [perl]
