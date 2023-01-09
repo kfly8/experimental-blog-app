@@ -20,6 +20,7 @@
 
 # Linebreak controls
 --noopening-sub-brace-on-new-line       # -nsbl
+--break-at-old-method-breakpoints       # -bom
 
 # Controlling list formatting
 --break-at-old-comma-breakpoints        # -boc
