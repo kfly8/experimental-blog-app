@@ -13,9 +13,11 @@ repos:
     - id: detect-aws-credentials
     - id: detect-private-key
 - repo: https://github.com/kfly8/pre-commit-perl
-  rev: c6d072eb539d4fc76d64a800d7589b4149faa004
+  rev: e5e0a8128a9d405a0cf1f0c19937d2dd5e0e4221
   hooks:
     - id: perltidy
+      types_or: [perl, file]
+      files: '\.(pl|pm|t|PL)$'
     - id: perlcritic
     - id: perlimports
 - repo: https://github.com/alessandrojcm/commitlint-pre-commit-hook
