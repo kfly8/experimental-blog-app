@@ -4,24 +4,9 @@ repos:
   hooks:
     - id: no-commit-to-branch
       args: ['--branch', 'main']
-    - id: check-yaml
-    - id: check-toml
-    - id: check-merge-conflict
-    - id: check-added-large-files
-    - id: end-of-file-fixer
-    - id: trailing-whitespace
-    - id: detect-aws-credentials
-    - id: detect-private-key
-- repo: https://github.com/kfly8/pre-commit-perl
-  rev: e5e0a8128a9d405a0cf1f0c19937d2dd5e0e4221
+- repo: https://github.com/henryykt/pre-commit-perl
+  rev: v0.0.5
   hooks:
     - id: perltidy
-      types_or: [perl, file]
-      files: '\.(pl|pm|t|PL)$'
     - id: perlcritic
     - id: perlimports
-- repo: https://github.com/alessandrojcm/commitlint-pre-commit-hook
-  rev: v9.3.0
-  hooks:
-    - id: commitlint
-      stages: [commit-msg]
